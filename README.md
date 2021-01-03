@@ -1,19 +1,19 @@
 <img src="https://user-images.githubusercontent.com/17819874/79853717-5db2f900-8403-11ea-99ba-ed0bb3cdb9ef.png" height="100"/>
 
-# 프로젝트 이름  
+# 던전 그 까이거 대충 돌면 되지
 [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/ohahohah/readme-template/graphs/commit-activity) 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 
 
-> 프로젝트 간략 소개 한 문장 
+> 와우 던전별 공략을 알기 쉽게 볼 수 있는 사이트
 - 웹사이트 url / (챗봇일 경우)텔레그램 등 메신저 주소
-- 사이트에 대한 1-2단락 설명
+- 던전을 클릭하면 해당 던전의 탱/힐/딜러별 공략을 알기 쉽게 확인할 수 있는 사이트
 
 ## 핵심 기능  Key Feature
-- (예시) 실시간 지역별 날씨에 맞는 옷차림 정보를 알려줍니다.
-- (예시) 미세먼지 정보를 파악할 수 있습니다.
+- 던전 공략을 알려줍니다
+- 던전 공략 영상도 확인할 수 있습니다
 
 ## 사용 How To Use
 - 사용하고 싶도록 유용한 몇 가지 예를 적습니다. 코드 블록과 스크린샷 포함.
@@ -22,7 +22,7 @@
 
 ## Contributing
 *(프로젝트 기여자가 있을 경우 적습니다)*
-- Thanks to @기여자이름
+- Thanks to @chan999k
 
 ## Reference
 *(참고 리소스,  code snippet, 라이센스 정보를 표기합니다)*
@@ -31,7 +31,7 @@
 
 ## Links
 *(사람이 읽기 쉽게 요약된 링크 정보를 추가합니다. 현재 리포지토리의 정보를 적습니다)*
-- Project homepage: (예시) https://yourname.github.io/github-tutorial/
+- Project homepage: (예시) https://chan999k.github.io/github-tutorial/
 - Repository: (예시) https://github.com/ohahohah/github-tutorial
 - 관련 프로젝트
   - 프로젝트 이름 : (예시) https://github.com/ohahohah/readme-template
