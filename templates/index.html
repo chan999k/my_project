@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>던전 그 까이거 대충 돌면 되지</title>
+</head>
+
+<style>
+    .title {
+        margin: auto;
+        padding-top: 50px;
+        width: 800px;
+    }
+
+    @font-face {
+        font-family: 'TmonMonsori';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-family: 'yg-jalnan';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .titleFont {
+        font-family: 'TmonMonsori';
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .cardStyle {
+        width: 1000px;
+        margin: auto;
+        padding-top: 50px;
+    }
+
+    .tabStyle {
+        width: 1000px;
+        margin: auto;
+        padding-top: 50px;
+    }
+
+    .cardFont {
+        font-family: 'yg-jalnan';
+        text-align: center;
+    }
+</style>
+
+<body>
+<div class="wrap">
+    <div class="title">
+        <h1 class="titleFont">던전 그 까이거 대충 돌면 되지</h1>
+    </div>
+    <p>
+        <div class="cardStyle" id="card">
+            <div class="card-deck">
+                <div class="card">
+                    <a href="#death">
+                        <img class="card-img-top" src="{{ url_for('static', filename='death.jpg') }}"
+                             alt="Card image cap">
+                    </a>
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title cardFont">죽음의 상흔</h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <a href="#fallen">
+                        <img class="card-img-top" src="{{ url_for('static', filename='fallen.jpg') }}"
+                             alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title cardFont">역병 몰락지</h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <a href="#mist">
+                        <img class="card-img-top" src="{{ url_for('static', filename='mist.jpg') }}"
+                             alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title cardFont">타르너사이드의 안개</h4>
+                    </div>
+                </div>
+            </div>
+    <p>
+    <div class="card-deck">
+        <div class="card">
+            <a href="#blood">
+                <img class="card-img-top" src="{{ url_for('static', filename='blood.jpg') }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title cardFont">핏빛심연</h4>
+            </div>
+        </div>
+        <div class="card">
+            <a href="#sky">
+                <img class="card-img-top" src="{{ url_for('static', filename='sky.jpg') }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title cardFont">승천의 보루</h4>
+            </div>
+        </div>
+        <div class="card">
+            <a href="#fight">
+                <img class="card-img-top" src="{{ url_for('static', filename='fight.jpg') }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title cardFont">고통의 투기장</h4>
+            </div>
+        </div>
+    </div>
+    <p>
+    <div class="card-deck">
+        <div class="card">
+            <a href="#otherside">
+                <img class="card-img-top" src="{{ url_for('static', filename='otherside.jpg') }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title cardFont">저편</h4>
+            </div>
+        </div>
+        <div class="card">
+            <a href="#hall">
+                <img class="card-img-top" src="{{ url_for('static', filename='hall.jpg') }}" alt="Card image cap">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title cardFont">속죄의 전당</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tabStyle">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#tanker">탱커</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#healer">힐러</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#dealer">딜러</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="contents">
+        <div class="tab-pane fade show active" id="tanker">
+            <p>
+            <h3>탱커입니다</h3></p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+
+        </div>
+        <div class="tab-pane fade" id="healer">
+            <p>
+            <h3>힐러입니다</h3></p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+        </div>
+        <div class="tab-pane fade" id="dealer">
+            <p>
+            <h3>딜러입니다</h3></p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+            <p>여기에 공략이 들어갈거구요</p>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#card').click(function () {
+            var offset = $('#contents').offset();
+            $('html').animate({scrollTop: offset.top}, 400);
+        });
+    });
+</script>
+</body>
+</html>
