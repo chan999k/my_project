@@ -1,10 +1,10 @@
 from pymongo import MongoClient
-
+from config import mongodb_url, ip_address
 from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
-client = MongoClient('localhost', 27017)
+client = MongoClient(mongodb_url, 27017)
 db = client.my_project
 
 
@@ -47,4 +47,4 @@ def death_tanker_count():
     return jsonify({'result': 'success', '개수': all_count, '합': sum})
 
 if __name__ == '__main__':
-    app.run('127.0.0.1', port=5001, debug=True)
+    app.run(ip_address, port=5000, debug=True)
