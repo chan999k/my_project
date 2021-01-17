@@ -13,6 +13,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
+    <!--og태그-->
+    <meta property="og:title" content="던전 그 까이거 대충 돌면 되지"/>
+    <meta property="og:description" content="어둠땅 던전 역할별 3줄 공략"/>
+    <meta property="og:image" content="{{ url_for('static', filename='ogtag.png') }}"/>
 
     <title>던전 그 까이거 대충 돌면 되지</title>
     <script>
@@ -65,6 +69,7 @@
 
         $(document).ready(function () {
             $('#fallenContents, #mistContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #deathContents, #hallContents').hide();
+            $('[data-toggle="tooltip"]').tooltip()
         });
 
         function deathTankerStarPoint() {
@@ -109,15 +114,6 @@
             })
         }
 
-        $.ajax({
-            type: "GET",
-            url: "/star",
-            data: {},
-            success: function (response) {
-                console.log(response)
-            }
-        })
-
         function othersideTankerStarPoint() {
             let star = $("input:radio[name=inlineRadioOptions]:checked").val();
             $.ajax({
@@ -159,6 +155,17 @@
                 }
             })
         }
+
+        $.ajax({
+            type: "GET",
+            url: "/star",
+            data: {},
+            success: function (response) {
+                let star_avg = response['합']/response['개수'];
+                let final_star = star_avg.toFixed(2)
+                $("#star_text").text(final_star);
+            }
+        })
     </script>
 
 </head>
@@ -315,8 +322,8 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="deathtanker">
                     <p>
-                    <h3 class="bodyTitle">죽음의상흔 탱커 공략</h3></p>
-                    <p>체감 난이도(평균: )</p>
+                    <h3 class="bodyTitle" id="deathTankerName">죽음의상흔 탱커 공략</h3></p>
+                    <p>체감 난이도(평균: <b><span id="star_text" style="color:blue"></span></b>)</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio1"
                                value="1">
@@ -354,9 +361,11 @@
                         <span style="color:red">* 안 하면 공포 걸림!</span></p>
                     <p><b>1넴 - 역병뼈닥이</b><br>
                         ① 바닥 깔리면 이동<br>
-                        ② [들썩이는 구토] 브레스 회피<br></p>
+                        ② <span data-toggle="tooltip" data-placement="bottom"
+                                title="부채꼴 범위에 8,788 자연 피해 및 12초 동안 2초마다 1,462 자연 피해, 오물 구더기 소환">[들썩이는 구토]</span> 브레스 회피<br>
+                    </p>
                     <p><b>2넴 - 수확자 아마스</b><br>
-                        ① [되살아난 마법사] [되살아난 석궁수] 생기면 빠르게 제거<br>
+                        ① <[되살아난 마법사] [되살아난 석궁수] 생기면 빠르게 제거<br>
                         ② [괴저 숨결] 브레스 피할 것<br></p>
                     <p><b>3넴 - 의사 스티치플레시</b><br>
                         ① [스티치플레시의 피조물]의 [고기 갈고리]를 [의사 스티치플레시]에게 유도<br>
@@ -760,7 +769,8 @@
                         ③ 포탈 이동 후 힐러와 함께 무에젤라의 환영 처치 <br></p>
                 </div>
                 <div class="tab-pane fade" id="othersidehealer">
-                    <p><h3 class="bodyTitle">저편 힐러 공략</h3></p>
+                    <p>
+                    <h3 class="bodyTitle">저편 힐러 공략</h3></p>
                     <p>체감 난이도(평균: )</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
@@ -820,7 +830,8 @@
                         ③ 포탈 이동 후 탱커와 함께 무에젤라의 환영 처치 <br></p>
                 </div>
                 <div class="tab-pane fade" id="othersidedealer">
-                    <p> <h3 class="bodyTitle">저편 딜러 공략</h3></p>
+                    <p>
+                    <h3 class="bodyTitle">저편 딜러 공략</h3></p>
                     <p>체감 난이도(평균: )</p>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
