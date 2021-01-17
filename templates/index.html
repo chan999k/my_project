@@ -15,6 +15,152 @@
             crossorigin="anonymous"></script>
 
     <title>던전 그 까이거 대충 돌면 되지</title>
+    <script>
+        $(document).ready(function () {
+            $('#card').click(function () {
+                var offset = $('#contents').offset();
+                $('html').animate({scrollTop: offset.top}, 400);
+            });
+        });
+
+        function openDeath() {
+            $('#fallenContents, #mistContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #hallContents').hide();
+            $('#deathContents').show();
+        }
+
+        function openFallen() {
+            $('#deathContents, #mistContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #hallContents').hide();
+            $('#fallenContents').show();
+        }
+
+        function openMist() {
+            $('#fallenContents, #deathContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #hallContents').hide();
+            $('#mistContents').show();
+        }
+
+        function openBlood() {
+            $('#fallenContents, #mistContents, #deathContents, #skyContents, #fightContents, #othersideContents, #hallContents').hide();
+            $('#bloodContents').show();
+        }
+
+        function openSky() {
+            $('#fallenContents, #mistContents, #bloodContents, #deathContents, #fightContents, #othersideContents, #hallContents').hide();
+            $('#skyContents').show();
+        }
+
+        function openFight() {
+            $('#fallenContents, #mistContents, #bloodContents, #skyContents, #deathContents, #othersideContents, #hallContents').hide();
+            $('#fightContents').show();
+        }
+
+        function openOtherside() {
+            $('#fallenContents, #mistContents, #bloodContents, #skyContents, #fightContents, #deathContents, #hallContents').hide();
+            $('#othersideContents').show();
+        }
+
+        function openHall() {
+            $('#fallenContents, #mistContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #deathContents').hide();
+            $('#hallContents').show();
+        }
+
+        $(document).ready(function () {
+            $('#fallenContents, #mistContents, #bloodContents, #skyContents, #fightContents, #othersideContents, #deathContents, #hallContents').hide();
+        });
+
+        function deathTankerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '죽음의 상흔 탱커'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("죽음의 상흔 탱커 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+
+        function deathHealerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '죽음의 상흔 힐러'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("죽음의 성흔 힐러 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+
+        function deathDealerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '죽음의 상흔 딜러'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("죽음의 상흔 딜러 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/star",
+            data: {},
+            success: function (response) {
+                console.log(response)
+            }
+        })
+
+        function othersideTankerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '저펀 탱커'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("저편 탱커 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+
+        function othersideHealerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '저펀 탱커'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("저편 힐러 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+
+        function othersideDealerStarPoint() {
+            let star = $("input:radio[name=inlineRadioOptions]:checked").val();
+            $.ajax({
+                type: "POST",
+                url: "/star",
+                data: {give_star: star, give_name: '저펀 딜러'},
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert("저편 딜러 평점 저장 성공!");
+                    }
+                }
+            })
+        }
+    </script>
+
 </head>
 
 <style>
@@ -57,6 +203,11 @@
         font-family: 'yg-jalnan';
         text-align: center;
     }
+
+    .bodyTitle {
+        font-weight: bold;
+    }
+
 </style>
 
 <body>
@@ -67,7 +218,7 @@
     <p>
         <div class="cardStyle" id="card">
             <div class="card-deck">
-                <div class="card">
+                <div class="card" onclick="openDeath()">
                     <a href="#death">
                         <img class="card-img-top" src="{{ url_for('static', filename='death.jpg') }}"
                              alt="Card image cap">
@@ -77,7 +228,7 @@
                         <h4 class="card-title cardFont">죽음의 상흔</h4>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openFallen()">
                     <a href="#fallen">
                         <img class="card-img-top" src="{{ url_for('static', filename='fallen.jpg') }}"
                              alt="Card image cap">
@@ -86,7 +237,7 @@
                         <h4 class="card-title cardFont">역병 몰락지</h4>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openMist()">
                     <a href="#mist">
                         <img class="card-img-top" src="{{ url_for('static', filename='mist.jpg') }}"
                              alt="Card image cap">
@@ -98,7 +249,7 @@
             </div>
     <p>
     <div class="card-deck">
-        <div class="card">
+        <div class="card" onclick="openBlood()">
             <a href="#blood">
                 <img class="card-img-top" src="{{ url_for('static', filename='blood.jpg') }}" alt="Card image cap">
             </a>
@@ -106,15 +257,15 @@
                 <h4 class="card-title cardFont">핏빛심연</h4>
             </div>
         </div>
-        <div class="card">
+        <div class="card" onclick="openSky()">
             <a href="#sky">
                 <img class="card-img-top" src="{{ url_for('static', filename='sky.jpg') }}" alt="Card image cap">
             </a>
             <div class="card-body">
-                <h4 class="card-title cardFont">승천의 보루</h4>
+                <h4 class="card-title cardFont">승천의 첨탑</h4>
             </div>
         </div>
-        <div class="card">
+        <div class="card" onclick="openFight()">
             <a href="#fight">
                 <img class="card-img-top" src="{{ url_for('static', filename='fight.jpg') }}" alt="Card image cap">
             </a>
@@ -125,7 +276,7 @@
     </div>
     <p>
     <div class="card-deck">
-        <div class="card">
+        <div class="card" onclick="openOtherside()">
             <a href="#otherside">
                 <img class="card-img-top" src="{{ url_for('static', filename='otherside.jpg') }}" alt="Card image cap">
             </a>
@@ -133,7 +284,7 @@
                 <h4 class="card-title cardFont">저편</h4>
             </div>
         </div>
-        <div class="card">
+        <div class="card" onclick="openHall()">
             <a href="#hall">
                 <img class="card-img-top" src="{{ url_for('static', filename='hall.jpg') }}" alt="Card image cap">
             </a>
@@ -141,59 +292,641 @@
                 <h4 class="card-title cardFont">속죄의 전당</h4>
             </div>
         </div>
-    </div>
-</div>
-<div class="tabStyle">
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#tanker">탱커</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#healer">힐러</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#dealer">딜러</a>
-        </li>
-    </ul>
-    <div class="tab-content" id="contents">
-        <div class="tab-pane fade show active" id="tanker">
-            <p>
-            <h3>탱커입니다</h3></p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-
-        </div>
-        <div class="tab-pane fade" id="healer">
-            <p>
-            <h3>힐러입니다</h3></p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-        </div>
-        <div class="tab-pane fade" id="dealer">
-            <p>
-            <h3>딜러입니다</h3></p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
-            <p>여기에 공략이 들어갈거구요</p>
+        <div class="card">
+            <img class="card-img-top" src="{{ url_for('static', filename='comming soon.png') }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title cardFont">업데이트 되면 올릴게요!</h5>
+            </div>
         </div>
     </div>
+    <div id="contents">
+        <div class="tabStyle" id="deathContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#deathtanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#deathhealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#deathdealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="deathtanker">
+                    <p>
+                    <h3 class="bodyTitle">죽음의상흔 탱커 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="deathTankRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="deathTankerStarPoint()">난이도 제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">키리안 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 상태이상의 거수 앞에서 부엉이를 소환하면 구슬 5개가 생김<br>
+                        구슬을 먹으면 이속 20% 증가 버프, 4초마다 주변 적 피해, 주변 아군 치유</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [해골 약탈자]의 [신경을 긁는 절규] 차단<br>
+                        <span style="color:red">* 안 하면 공포 걸림!</span></p>
+                    <p><b>1넴 - 역병뼈닥이</b><br>
+                        ① 바닥 깔리면 이동<br>
+                        ② [들썩이는 구토] 브레스 회피<br></p>
+                    <p><b>2넴 - 수확자 아마스</b><br>
+                        ① [되살아난 마법사] [되살아난 석궁수] 생기면 빠르게 제거<br>
+                        ② [괴저 숨결] 브레스 피할 것<br></p>
+                    <p><b>3넴 - 의사 스티치플레시</b><br>
+                        ① [스티치플레시의 피조물]의 [고기 갈고리]를 [의사 스티치플레시]에게 유도<br>
+                        ② [방부 수액] 바닥 피할 것<br></p>
+                    <p><b>4넴 - 냉기결속사 날토르</b><br>
+                        ① [혜성 폭풍] 바닥 잘 피하기<br></p>
+                </div>
+                <div class="tab-pane fade" id="deathhealer">
+                    <p>
+                    <h3 class="bodyTitle">죽음의상흔 힐러 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="deathHealerStarPoint()">난이도
+                        제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">키리안 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 상태이상의 거수 앞에서 부엉이를 소환하면 구슬 5개가 생김<br>
+                        구슬을 먹으면 이속 20% 증가 버프, 4초마다 주변 적 피해, 주변 아군 치유</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [해골 약탈자]의 [신경을 긁는 절규] 차단<br>
+                        <span style="color:red">* 안 하면 공포 걸림!</span></p>
+                    <p><b>1넴 - 역병뼈닥이</b><br>
+                        ① 바닥 깔리면 이동<br>
+                        ② [들썩이는 구토] 브레스 회피<br></p>
+                    <p><b>2넴 - 수확자 아마스</b><br>
+                        ① [괴저 숨결] 브레스 피할 것<br></p>
+                    <p><b>3넴 - 의사 스티치플레시</b><br>
+                        ① [스티치플레시의 피조물]의 [고기 갈고리]를 [의사 스티치플레시]에게 유도<br>
+                        ② [방부 수액] 바닥 피할 것<br>
+                        ③ [맹독의 집착] 대상자 도망<br></p>
+                    <p><b>4넴 - 냉기결속사 날토르</b><br>
+                        ① [혜성 폭풍] 바닥 잘 피하기<br>
+                        ② [얼어붙은 구속] 걸린 대상 주변에 아무도 없을 때 해제<br>
+                </div>
+                <div class="tab-pane fade" id="deathdealer">
+                    <p>
+                    <h3 class="bodyTitle">죽음의상흔 딜러 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="deathDealerStarPoint()">난이도
+                        제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">키리안 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 상태이상의 거수 앞에서 부엉이를 소환하면 구슬 5개가 생김<br>
+                        구슬을 먹으면 이속 20% 증가 버프, 4초마다 주변 적 피해, 주변 아군 치유</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [해골 약탈자]의 [신경을 긁는 절규] 차단<br>
+                        <span style="color:red">* 안 하면 공포 걸림!</span></p>
+                    <p><b>1넴 - 역병뼈닥이</b><br>
+                        ① [오물 구더기] 생기면 일점사<br>
+                        ② 바닥 깔리면 이동<br>
+                        ③ [들썩이는 구토] 브레스 회피<br></p>
+                    <p><b>2넴 - 수확자 아마스</b><br>
+                        ① [되살아난 마법사] [되살아난 석궁수] 생기면 빠르게 제거<br>
+                        ② [되살아난 마법사]가 시전하는 [연발 얼음 화살] 차단<br>
+                        ③ [괴저 숨결] 브레스 피할 것<br></p>
+                    <p><b>3넴 - 의사 스티치플레시</b><br>
+                        ① [스티치플레시의 피조물]의 [고기 갈고리]를 [의사 스티치플레시]에게 유도<br>
+                        ② [방부 수액] 바닥 피할 것<br>
+                        ③ [맹독의 집착] 대상자 도망<br></p>
+                    <p><b>4넴 - 냉기결속사 날토르</b><br>
+                        ① [혜성 폭풍] 바닥 잘 피하기<br>
+                        ② [어둠의 추방]으로 내려가면 빠르게 길 반대편 몹 처치 후 용사 클릭<br>
+                        ③ [어둠의 추방]에서 탈출하면 [얼음 장판] 구석에 깔고 합류 <br></p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="fallenContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#fallentanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#fallenhealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#fallendealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="fallentanker">
+                    <p>
+                    <h3>역병몰락지 탱커입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="fallenhealer">
+                    <p>
+                    <h3>역병몰락지 힐러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="fallendealer">
+                    <p>
+                    <h3>역병몰락지 딜러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="mistContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#misttanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#misthealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#mistdealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="misttanker">
+                    <p>
+                    <h3>타르너사이드의 안개 탱커입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="misthealer">
+                    <p>
+                    <h3>타르너사이드의 안개 힐러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="mistdealer">
+                    <p>
+                    <h3>타르너사이드의 안개 딜러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="bloodContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#bloodtanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#bloodhealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#blooddealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="bloodtanker">
+                    <p>
+                    <h3>핏빛심연 탱커입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="bloodhealer">
+                    <p>
+                    <h3>핏빛심연 힐러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="blooddealer">
+                    <p>
+                    <h3>핏빛심연 딜러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="skyContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#skytanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#skyhealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#skydealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="skytanker">
+                    <p>
+                    <h3>승천의첨탑 탱커입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="skyhealer">
+                    <p>
+                    <h3>승천의첨탑 힐러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="skydealer">
+                    <p>
+                    <h3>승천의첨탑 딜러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="fightContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#fighttanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#fighthealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#fightdealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="fighttanker">
+                    <p>
+                    <h3>고통의 투기장 탱커입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="fighthealer">
+                    <p>
+                    <h3>고통의 투기장 힐러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+                <div class="tab-pane fade" id="fightdealer">
+                    <p>
+                    <h3>고통의 투기장 딜러입니다</h3></p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                    <p>여기에 공략이 들어갈거구요</p>
+                </div>
+            </div>
+        </div>
+        <div class="tabStyle" id="othersideContents">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#othersidetanker">탱커</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#othersidehealer">힐러</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#othersidedealer">딜러</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="othersidetanker"><p>
+                    <h3 class="bodyTitle">저편 탱커 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersidetankerRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersidetankerRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersidetankerRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersidetankerRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersidetankerRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="othersideTankerStarPoint()">
+                        난이도
+                        제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">저편 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 원혼의 단지를 클릭하면 주변 30m내 적 기절</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [사술] [치유] 주문 차단<br>
+                        [사용 중지된 치과용 천공기]는 벽 근처에서 탱킹 후 [통제 불능] 사용 시 파티원 전원 시야 밖으로 피신</p>
+                    <p><b>1넴 - 영혼학탈자 학카르</b><br>
+                        ① [오염된 피] 대상자 이격<br>
+                        ② [피의 방벽] 시전 시 빠르게 딜해 보호막 제거<br></p>
+                    <p><b>2넴 - 마나스톰 부부</b><br>
+                        ① 밀하우스의 [압도적인 힘] 광선 대신 맞을 것<br>
+                        ② 밀하우스 [분출]을 밀리피센트에게, 밀리피센트 [어둠의 격노]를 밀하우스에게 유도<br>
+                        ③ 밀레피센트가 [비행 로켓닭 포화] 시전 시 생존기 발동</p>
+                    <p><b>3넴 - 무역업자 자이엑사</b><br>
+                        ① [변위 덫] 평소에 밟지 않을 것<br>
+                        ② [폭파 장치] 시전 시 [변위 덫]을 밟아 회피<br>
+                        ③ [국지적 폭파 장치] 대상자는 [변위 덫]을 밟을 것<br></p>
+                    <p><b>4넴 - 무에젤라</b><br>
+                        ① [죽음의 지배자] 시전 시 보스 손 보고 뒤, 오른쪽, 왼쪽 이동<br>
+                        ② [현실 분쇄] 시전 시 단상에 생기는 포탈로 힐러와 함께 빨리 이동<br>
+                        ③ 포탈 이동 후 힐러와 함께 무에젤라의 환영 처치 <br></p>
+                </div>
+                <div class="tab-pane fade" id="othersidehealer">
+                    <p><h3 class="bodyTitle">저편 힐러 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideHealerRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideHealerRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideHealerRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideHealerRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideHealerRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="othersideHealerStarPoint()">
+                        난이도
+                        제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">저편 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 원혼의 단지를 클릭하면 주변 30m내 적 기절</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [사술] [치유] 주문 차단<br>
+                        [사용 중지된 치과용 천공기]는 벽 근처에서 탱킹 후 [통제 불능] 사용 시 파티원 전원 시야 밖으로 피신</p>
+                    <p><b>1넴 - 영혼학탈자 학카르</b><br>
+                        ① [오염된 피] 대상자 이격<br>
+                    <p><b>2넴 - 마나스톰 부부</b><br>
+                        ① 밀하우스의 [압도적인 힘] 광선 대신 맞을 것<br>
+                        ② 밀리피센트가 [실험용 다람쥐 폭탄]을 소환하면 클릭해 해체<br>
+                        ③ 밀하우스 [분출]을 밀리피센트에게, 밀리피센트 [어둠의 격노]를 밀하우스에게 유도<br>
+                        ④ 밀레피센트가 [비행 로켓닭 포화] 시전 시 쿨기 운용</p>
+                    <p><b>3넴 - 무역업자 자이엑사</b><br>
+                        ① [변위 덫] 평소에 밟지 않을 것<br>
+                        ② [폭파 장치] 시전 시 [변위 덫]을 밟아 회피<br>
+                        ③ [국지적 폭파 장치] 대상자는 [변위 덫]을 밟을 것<br></p>
+                    <p><b>4넴 - 무에젤라</b><br>
+                        ① [죽음의 지배자] 시전 시 보스 손 보고 반대편으로 이동<br>
+                        ② [현실 분쇄] 시전 시 단상에 생기는 포탈로 탱커와 함께 빨리 이동<br>
+                        ③ 포탈 이동 후 탱커와 함께 무에젤라의 환영 처치 <br></p>
+                </div>
+                <div class="tab-pane fade" id="othersidedealer">
+                    <p> <h3 class="bodyTitle">저편 딜러 공략</h3></p>
+                    <p>체감 난이도(평균: )</p>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideDealerRadio1"
+                               value="1">
+                        <label class="form-check-label" for="inlineRadio1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideDealerRadio2"
+                               value="2">
+                        <label class="form-check-label" for="inlineRadio2">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideDealerRadio3"
+                               value="3">
+                        <label class="form-check-label" for="inlineRadio3">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideDealerRadio4"
+                               value="4">
+                        <label class="form-check-label" for="inlineRadio3">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                               id="othersideDealerRadio5"
+                               value="5">
+                        <label class="form-check-label" for="inlineRadio3">5</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="othersideDealerStarPoint()">
+                        난이도
+                        제출
+                    </button>
+                    <br>
+                    <br>
+                    <p><b><span style="color:blue">저편 보너스 효과</span></b><br>
+                        가는 길 중간마다 있는 원혼의 단지를 클릭하면 주변 30m내 적 기절</p>
+                    <p><b>*일반 몬스터 구간</b><br>
+                        [사술] [치유] 주문 차단<br>
+                        [사용 중지된 치과용 천공기]는 벽 근처에서 탱킹 후 [통제 불능] 사용 시 파티원 전원 시야 밖으로 피신</p>
+                    <p><b>1넴 - 영혼학탈자 학카르</b><br>
+                        ① [오염된 피] 대상자 이격<br>
+                        ② [피의 방벽] 시전 시 빠르게 딜해 보호막 제거<br>
+                        ③ [학카르의 자손] 점사<br></p>
+                    <p><b>2넴 - 마나스톰 부부</b><br>
+                        ① 밀하우스의 [압도적인 힘] 광선 대신 맞을 것<br>
+                        ② 밀리피센트가 [실험용 다람쥐 폭탄]을 소환하면 클릭해 해체<br>
+                        ③ 밀하우스 [분출]을 밀리피센트에게, 밀리피센트 [어둠의 격노]를 밀하우스에게 유도<br>
+                        ④ 밀레피센트가 [비행 로켓닭 포화] 시전 시 생존기 발동</p>
+                    <p><b>3넴 - 무역업자 자이엑사</b><br>
+                        ① [변위 덫] 평소에 밟지 않을 것<br>
+                        ② [폭파 장치] 시전 시 [변위 덫]을 밟아 회피<br>
+                        ③ [국지적 폭파 장치] 대상자는 [변위 덫]을 밟을 것<br></p>
+                    <p><b>4넴 - 무에젤라</b><br>
+                        ① [죽음의 지배자] 시전 시 보스 손 보고 반대편으로 이동<br>
+                        ② [현실 분쇄] 시전 시 단상에 생기는 포탈로 빨리 이동<br>
+                        ③ 포탈 이동 후 무에젤라의 환영 처치 <br></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tabStyle" id="hallContents">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#halltanker">탱커</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#hallhealer">힐러</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#halldealer">딜러</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="halltanker">
+                <p>
+                <h3>속죄의 전당 탱커입니다</h3></p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+            </div>
+            <div class="tab-pane fade" id="hallhealer">
+                <p>
+                <h3>속죄의 전당 힐러입니다</h3></p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+            </div>
+            <div class="tab-pane fade" id="halldealer">
+                <p>
+                <h3>속죄의 전당 딜러입니다</h3></p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+                <p>여기에 공략이 들어갈거구요</p>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#card').click(function () {
-            var offset = $('#contents').offset();
-            $('html').animate({scrollTop: offset.top}, 400);
-        });
-    });
-</script>
 </body>
 </html>
